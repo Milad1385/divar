@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دیوار</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://support-faq.divarcdn.com/web/2024/03/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="../vendor/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="../vendor/bootstrap_icon/bootstraicon.css" />
+    <link rel="stylesheet" href="../public/css/share.css" />
+    <link rel="stylesheet" href="../public/css/posts.css" />
+  </head>
+
+  <body>
+    <!--!==========================================Header==========================================!-->
+    <header class="header">
+      <div class="container-fluid">
+        <div class="header__wrapper">
+          <div class="header__right">
+            <a class="header__logo-link" href="/pages/posts.html">
+              <img
+                class="header__logo-img"
+                src="/public/images/header/logo.svg"
+                alt="logo"
+              />
+            </a>
+            <button class="header__city">
+              <i class="header__city-icon bi bi-geo-alt"></i>
+              <span id="header-city-title" class="header__city-title"
+                >اصفهان</span
+              >
+            </button>
+            <div class="header__category">
+              <button class="header__category-btn">
+                <span class="header__category-btn-title">دسته ها</span>
+                <i class="header__category-btn-icon bi bi-chevron-down"></i>
+              </button>
+              <div class="header__category-menu" id="header__category-menu">
+                <section>
+                  <div class="header__category-menu-right">
+                    <div
+                      class="header__category-menu-btn"
+                      id="all-categories-posts"
+                    >
+                      <i
+                        class="header__category-menu-btn-icon bi bi-arrow-right"
+                      ></i>
+                      همه آگهی ها
+                    </div>
+                    <ul
+                      class="haeder__category-menu-list"
+                      id="categories-list"
+                    ></ul>
+                  </div>
+                  <div
+                    class="header__category-dropdown"
+                    id="category-results"
+                  ></div>
+                </section>
+                <div class="overlay category_modal_overlay"></div>
+              </div>
+            </div>
+            <div class="header__searchbar">
+              <form class="header__form" onsubmit="return false">
+                <input
+                  autocomplete="off"
+                  class="header__form-input"
+                  id="global_search_input"
+                  type="text"
+                  placeholder="جستجو در تمام آگهی ها..."
+                />
+                <i id="remove-search-value-icon" class="bi bi-x"></i>
+              </form>
+              <i class="header__searchbar-icon bi bi-search"></i>
+              <div
+                class="header__searchbar-dropdown"
+                id="header__searchbar-dropdown"
+              >
+                <section>
+                  <span class="header__searchbar-dropdown-title"
+                    >بیشترین جستجوهای دیوار</span
+                  >
+                  <ul
+                    class="header__searchbar-dropdown-list"
+                    id="most_searched"
+                  ></ul>
+                </section>
+                <div class="overlay searchbar__modal-overlay" id="overlay-elem"></div>
+              </div>
+            </div>
+          </div>
+          <div class="header__left">
+            <div class="dropdown header_dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="header__left-icon bi bi-person"></i>
+                دیوار من
+              </button>
+              <ul class="dropdown-menu header_dropdown_menu"></ul>
+            </div>
+            <a class="header__left-link" href="/pages/support.html">
+              پشتیبانی
+            </a>
+            <button class="header__left-btn create_post_btn">ثبت آگهی</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--!==========================================End Header==========================================!-->
+
+    <!--!==========================================Main==========================================!-->
+    <main class="main">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-3">
+            <div class="sidebar">
+              <div class="sidebar__category">
+                <span class="sidebar__category-title">دسته ها</span>
+                <ul class="sidebar__category-list">
+                  <li class="sidebar__category-item">
+                    <!-- data loaded from js -->
+                  </li>
+                </ul>
+              </div>
+              <div class="sidebar__filters" id="sidebar-filters">
+                <div
+                  class="accordion accordion-flush"
+                  id="accordionFlushExample"
+                >
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne"
+                        aria-expanded="false"
+                        aria-controls="flush-collapseOne"
+                      >
+                        <span class="sidebar__filter-title">قیمت</span>
+                      </button>
+                    </h2>
+                    <div
+                      id="flush-collapseOne"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="flush-headingOne"
+                      data-bs-parent="#accordionFlushExample"
+                    >
+                      <div class="accordion-body">
+                        <div class="sidebar__filter-price sidebar__filter-item">
+                          <div class="sidebar__filter-price-wrapper">
+                            <label class="sidebar__filter-price-label"
+                              >حداقل</label
+                            >
+                            <select name id="min-price-selectbox">
+                              <option value="default">پیش فرض</option>
+                              <option value="10000">10 هزار</option>
+                              <option value="50000">50 هزار</option>
+                              <option value="200000">200 هزار</option>
+                              <option value="500000">500 هزار</option>
+                              <option value="1000000">1 میلیون</option>
+                              <option value="5000000">5 میلیون</option>
+                              <option value="10000000">10 میلیون</option>
+                              <option value="20000000">20 میلیون</option>
+                              <option value="50000000">50 میلیون</option>
+                              <option value="100000000">100 میلیون</option>
+                              <option value="150000000">150 میلیون</option>
+                              <option value="200000000">200 میلیون</option>
+                            </select>
+                            <p>تومان</p>
+                          </div>
+                          <div class="sidebar__filter-price-wrapper">
+                            <label class="sidebar__filter-price-label"
+                              >حداکثر</label
+                            >
+                            <select name id="max-price-selectbox">
+                              <option value="default">پیش فرض</option>
+                              <option value="10000">10 هزار</option>
+                              <option value="50000">50 هزار</option>
+                              <option value="200000">200 هزار</option>
+                              <option value="500000">500 هزار</option>
+                              <option value="1000000">1 میلیون</option>
+                              <option value="5000000">5 میلیون</option>
+                              <option value="10000000">10 میلیون</option>
+                              <option value="20000000">20 میلیون</option>
+                              <option value="50000000">50 میلیون</option>
+                              <option value="100000000">100 میلیون</option>
+                              <option value="150000000">150 میلیون</option>
+                              <option value="200000000">200 میلیون</option>
+                            </select>
+                            <p>تومان</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="sidebar__filter">
+                  <label class="switch">
+                    <input
+                      id="exchange_controll"
+                      class="icon-controll"
+                      type="checkbox"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                  <p>معاوضه</p>
+                </div>
+                <div class="sidebar__filter">
+                  <label class="switch">
+                    <input
+                      id="just_photo_controll"
+                      class="icon-controll"
+                      type="checkbox"
+                    />
+                    <span class="slider round"></span>
+                  </label>
+                  <p>فقط عکس دار</p>
+                </div>
+              </div>
+              <div class="sidebar__links">
+                <a class="sidebar__link" href="/pages/about.html"
+                  >درباره دیوار</a
+                >
+                <a class="sidebar__link" href="/pages/download.html"
+                  >دریافت برنامه</a
+                >
+                <a class="sidebar__link" href="/pages/support/articles.html"
+                  >بلاگ دیوار</a
+                >
+                <a class="sidebar__link" href="/pages/contact-us.html"
+                  >ارتباط با ما</a
+                >
+              </div>
+              <div class="sidebar__icons" id="footer__social-media"></div>
+              <div class="sidebar__images">
+                <div class="row">
+                  <div class="col-4">
+                    <a class="sidebar__image-link" href="#">
+                      <img
+                        class="sidebar__image img-fluid"
+                        src="/public/images/main/enamad.png"
+                      />
+                    </a>
+                  </div>
+                  <div class="col-4">
+                    <a class="sidebar__image-link" href="#">
+                      <img
+                        class="sidebar__image img-fluid"
+                        src="/public/images/main/etehadie.png"
+                      />
+                    </a>
+                  </div>
+                  <div class="col-4">
+                    <a class="sidebar__image-link" href="#">
+                      <img
+                        class="sidebar__image img-fluid"
+                        src="/public/images/main/neshan.png"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="row" id="posts-container"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!--!==========================================End Main==========================================!-->
+
+    <!--!==========================================city Modal==========================================!-->
+    <div class="city-modal" id="city-modal">
+      <div class="city-modal__overlay"></div>
+      <section>
+        <div class="city-modal__header">
+          <div class="city-modal__header-wrapper">
+            <div class="city-modal__title-wrapper">
+              <span class="city-modal__title">انتخاب شهر</span>
+              <button
+                id="delete-all-cities"
+                class="city-modal__btn delete_cities"
+              >
+                حذف همه
+              </button>
+            </div>
+            <p id="city_modal_error">حداقل یک شهر را انتخاب کنید.</p>
+            <div class="city-modal__selected" id="city-selected"></div>
+            <div class="city-modal__searchbar">
+              <form class="city-modal__form">
+                <input
+                  class="city-modal__input"
+                  id="city-modal-search-input"
+                  type="text"
+                  placeholder="جستجو در شهرها"
+                />
+                <i class="city-modal__icon bi bi-search"></i>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="city-modal__cities">
+          <ul class="city-modal__cities-list" id="city_modal_list"></ul>
+        </div>
+        <div class="city-modal__footer">
+          <div class="city-modal__footer-wrapper">
+            <button class="city-modal__btn-footer city-modal__close">
+              انصراف
+            </button>
+            <button class="city-modal__btn-footer city-modal__accept">
+              تایید
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!--!==========================================End city Modal==========================================!-->
+
+    <!--!==========================================Login Modal==========================================!-->
+    <div class="login-modal" id="login-modal">
+      <section class="login_modal_step_1">
+        <div class="login-modal__header">
+          <div class="login-modal__header-wrapper">
+            <span class="login-modal__title">ورود به حساب کاربری</span>
+            <button class="login-modal__header-btn">
+              <i class="login-modal__icon bi bi-x"></i>
+            </button>
+          </div>
+        </div>
+        <div class="login-modal__main">
+          <span class="login-modal__main-title"
+            >شماره موبایل خود را وارد کنید.</span
+          >
+          <p class="login-modal__main-notic">
+            قبل از ثبت آگهی، لطفاً وارد حساب خود شوید.
+          </p>
+          <p class="login-modal__main-notic">
+            کد تأیید به این شماره پیامک می‌شود.
+          </p>
+          <div class="login-modal__form-wrapper">
+            <form class="login-modal__form" action="#">
+              <input
+                class="login-modal__input phone_Number_input"
+                placeholder="شماره موبایل"
+              />
+              <span class="step-1-login-form__error"></span>
+            </form>
+            <span class="login-modal__form-text">+98</span>
+          </div>
+          <div class="login-modal__condition">
+            <a class="login-modal__condition-link" href="#"
+              >شرایط استفاده از خدمات</a
+            >
+            <span class="login-modal__condition-text">و</span>
+            <a class="login-modal__condition-link" href="#">حریم خصوصی</a>
+            <span class="login-modal__condition-text">دیوار را میپذیرم.</span>
+          </div>
+        </div>
+        <div class="login-modal__footer">
+          <button class="login-modal__footer-btn submit_phone_number_btn">
+            تایید
+          </button>
+        </div>
+      </section>
+      <section class="login_modal_step_2">
+        <div class="login-modal__header">
+          <div class="login-modal__header-wrapper">
+            <span class="login-modal__title">ورود به حساب کاربری</span>
+            <button class="login-modal__header-btn">
+              <i class="login-modal__icon bi bi-x"></i>
+            </button>
+          </div>
+        </div>
+        <div class="login-modal__main">
+          <span class="login-modal__main-title">کد تأیید را وارد کنید</span>
+          <p class="login-modal__main-notic">
+            کد پیامک‌شده به شمارۀ «<span class="user_number_notice"
+              >۰۹۰۴۶۴۱۷۰۸۴</span
+            >» را وارد کنید.
+          </p>
+
+          <div class="login-modal__form-wrapper">
+            <form class="login-modal__form" action="#">
+              <input
+                class="login-modal__input code_input"
+                maxlength="4"
+                placeholder="کد تایید 4 رقمی"
+              />
+              <span class="step-2-login-form__error"></span>
+            </form>
+          </div>
+          <div class="login-modal__condition">
+            <span class="login-modal__condition-text login-change-number"
+              >تغییر شماره موبایل</span
+            >
+          </div>
+        </div>
+        <div class="login-modal__footer">
+          <button class="login-modal__footer-btn req_new_code_btn">
+            درخواست کد
+          </button>
+          <div class="request_timer">
+            <p>درخواست مجدد</p>
+            <span>10</span>
+          </div>
+          <button class="login-modal__footer-btn login_btn">ورود</button>
+        </div>
+      </section>
+      <div class="overlay login_modal_overlay"></div>
+    </div>
+    <!--!==========================================End Login Modal==========================================!-->
+
+    <!--!==========================================End Overlay Searchbar==========================================!-->
+
+    <div id="loading-container">
+      <div id="loading"></div>
+    </div>
+
+    <script src="../public/js/posts.js" type="module"></script>
+    <script src="../public/js/shared.js" type="module"></script>
+    <script src="../vendor/bootstrap/bootstrap.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </body>
+</html>

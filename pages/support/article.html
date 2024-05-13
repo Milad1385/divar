@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+        <title>مرکز پشتیبانی دیوار</title>
+        <link rel="icon" type="image/png" sizes="32x32"
+        href="https://support-faq.divarcdn.com/web/2024/03/favicon-32x32.png" />
+        <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.css" />
+        <link rel="stylesheet" href="/vendor/bootstrap_icon/bootstraicon.css" />
+        <link rel="stylesheet" href="/public/css/share.css" />
+        <link rel="stylesheet" href="/public/css/support/article.css" />
+        <link rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin />
+    </head>
+
+    <body>
+        <!--!==========================================Header==========================================!-->
+        <header class="header">
+            <div class="container-fluid">
+                <div class="header__wrapper">
+                    <div class="header__right">
+                          <a class="header__logo-link" href="/pages/posts.html">
+                            <img class="header__logo-img"
+                                src="/public/images/header/logo.svg"
+                                alt="logo">
+                        </a>
+                    </div>
+                    <div class="header__left">
+                        <div class="dropdown header_dropdown">
+                            <button class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="header__left-icon bi bi-person"></i>
+                                دیوار من
+                            </button>
+                            <ul class="dropdown-menu header_dropdown_menu"></ul>
+
+                        </div>
+                        <a class="header__left-link" href="/pages/support.html">
+                            پشتیبانی
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--!==========================================End Header==========================================!-->
+
+        <!--!===========================================Main==========================================!-->
+        <main class="main">
+            <div class="breadcrumb" id="breadcumb">
+                <a href="/pages/support.html"> پشتیبانی</a>
+                <i class="bi bi-chevron-left"></i>
+                <p>...</p>
+                <i class="bi bi-chevron-left"></i>
+                <span></span>
+            </div>
+
+            <p class="title" id="article-title"></p>
+            <div class="content" id="article-body"></div>
+
+        </main>
+
+        <div class="same_articles-container">
+            <p>مقالات مرتبط</p>
+            <div id="same-articles"></div> 
+        </div>
+        <!--!==========================================End Main==========================================!-->
+        <!--!==========================================Footer==========================================!-->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__wrapper">
+                    <div class="footer__right">
+                        <a class="footer__logo-link" href="#">
+                            <img class="footer__logo"
+                                src="/public/images/header/logo.svg">
+                        </a>
+                        <div class="footer__links">
+                            <a class="footer__link" href="#">درباره دیوار</a>
+                            <a class="footer__link" href="#">پشتیبانی و قوانین</a>
+                            <a class="footer__link" href="#">بلاگ دیوار</a>
+                        </div>
+                    </div>
+                    <div class="footer__left">
+                        <div class="footer__social-media">
+                            <a class="footer__social-media-link" href="#">
+                                <i
+                                    class="footer__social-media-icon bi bi-twitter"></i>
+                            </a>
+                            <a class="footer__social-media-link" href="#">
+                                <i
+                                    class="footer__social-media-icon bi bi-instagram"></i>
+                            </a>
+                            <a class="footer__social-media-link" href="#">
+                                <i
+                                    class="footer__social-media-icon bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--!==========================================End Footer==========================================!-->
+
+        <!--!==========================================Overlay Searchbar==========================================!-->
+        <section class="overlay-header"></section>
+        <!--!==========================================End Overlay Searchbar==========================================!-->
+
+        <div id="loading-container">
+            <div id="loading"></div>
+        </div>
+
+        
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin></script>
+        <script src="/public/js/support/article.js" type="module"></script>
+        <script src="/vendor/bootstrap/bootstrap.js"></script> 
+        <script src="/public/js/shared.js" type="module"></script>
+    </body>
+</html>

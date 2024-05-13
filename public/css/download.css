@@ -1,0 +1,60 @@
+
+.main {
+    margin-top: 15rem;
+}
+.intro {
+    max-width: 50rem;
+}
+.intro__subtitle {
+    font-size: 1.4rem;
+    color:#000;
+}
+.intro__title {
+    font-size: 3.2rem;
+    font-family: "iransans-bold";
+    margin: 2rem 0;
+    color:#000;
+}
+.intro__second-subtitle {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    line-height: 2.5rem;
+}
+.intro__second-paragraph {
+    font-size: 1.4rem;
+    line-height: 2.5rem;
+    margin-bottom: 3rem;
+}
+.intro__apps {
+    display: flex;
+}
+.intro__apps-links {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 1rem;
+}
+.intro__apps-link {
+    margin: .5rem 1rem;
+    display: block;
+}
+.intro__apps-img {
+    width: 16.2rem;
+}
+.intro__left {
+    display: flex;
+    justify-content: center;
+}
+.intro__icon {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    padding-left: 1.5rem;
+}
+.intro__icon:first-child {
+    margin-top: 1rem;
+}
+.intro__icon:last-child {
+    margin-top: 4rem;
+} 
+

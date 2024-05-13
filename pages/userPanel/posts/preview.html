@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>صفحه حساب شخصی شما در سایت دیوار</title>
+        <link rel="icon" type="image/png" sizes="32x32"
+        href="https://support-faq.divarcdn.com/web/2024/03/favicon-32x32.png" />
+        <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.css" /> 
+        <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.css">
+        <link rel="stylesheet" href="/public/css/share.css" />
+        <link rel="stylesheet" href="/public/css/userPanel/preview.css">
+        <link rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+            crossorigin />
+    </head>
+
+    <body>
+        <!--!==========================================Header==========================================!-->
+        <header class="header">
+            <div class="container-fluid">
+                <div class="header__wrapper">
+                    <div class="header__right">
+                        <a class="header__logo-link" href="/pages/posts.html">
+                            <img class="header__logo-img"
+                                src="/public/images/header/logo.svg" alt="logo">
+                        </a>
+                        <button class="header__city">
+                            <i class="header__city-icon bi bi-geo-alt"></i>
+                            <span class="header__city-title"
+                                id="header-city-title"></span>
+                        </button>
+                    </div>
+                    <div class="header__left">
+                        <div class="dropdown header_dropdown">
+                            <button class="btn btn-secondary dropdown-toggle"
+                                type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="header__left-icon bi bi-person"></i>
+                                دیوار من
+                            </button>
+                            <ul class="dropdown-menu header_dropdown_menu"></ul>
+
+                        </div>
+                        <a class="header__left-link" href="/pages/support.html">
+                            پشتیبانی
+                        </a>
+                        <button class="header__left-btn create_post_btn">ثبت
+                            آگهی</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--!==========================================End Header==========================================!-->
+
+        <!--!==========================================Main==========================================!-->
+        <main class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="sidebar">
+                            <div class="sidebar__user">
+                              <div class="sidebar__user-right">
+                                <i class="sidebar__user-icon bi bi-person"></i>
+                              </div>
+                              <div class="sidebar__user-left">
+                                <div class="sidebar__user-text">کاربر دیوار</div>
+                                <p id="sidebar-phone-number" class="sidebar__user-phone"></p>
+                              </div>
+                            </div>
+                            <ul class="sidebar__menu-list">
+                              <li class="sidebar__menu-item">
+                                <a
+                                  class="sidebar__menu-link"
+                                  href="verify.html">
+                                  <i class="sidebar__menu-icon bi bi-patch-check"></i>
+                                  تایید هویت
+                                </a>
+                              </li>
+                              <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link  sidebar__menu-link--active"
+                                  href="posts.html">
+                                  <i class="sidebar__menu-icon bi bi-journal"></i>
+                                  آگهی های من
+                                </a>
+                              </li>
+                              <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link" href="bookmarks.html">
+                                  <i class="sidebar__menu-icon bi bi-bookmark"></i>
+                                  نشان ها
+                                </a>
+                              </li>
+                              <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link" href="notes.html">
+                                  <i class="sidebar__menu-icon bi bi-journal"></i>
+                                  یادداشت ها
+                                </a>
+                              </li>
+                              <li class="sidebar__menu-item">
+                                <a class="sidebar__menu-link" href="recent-seen.html">
+                                  <i class="sidebar__menu-icon bi bi-clock-history"></i>
+                                  بازدید های اخیر
+                                </a>
+                              </li>
+                            </ul>
+                            <p class="sidebar__logout sidebar__link-item"  id="logout-btn">
+                              <i
+                                class="sidebar__logout-icon sidebar__link-icon bi bi-box-arrow-right"></i>
+                              خروج
+                            </p>
+                            <div class="sidebar__links">
+                              <a class="sidebar__link" href="#">درباره دیوار</a>
+                              <a class="sidebar__link" href="#">دریافت برنامه</a>
+                              <a class="sidebar__link" href="#">پشتیبانی و قوانین</a>
+                            </div>
+                            <div class="sidebar__social">
+                              <a class="sidebar__social-link" href="#">
+                                <i class="sidebar__social-icon bi bi-twitter"></i>
+                              </a>
+                              <a class="sidebar__social-link" href="#">
+                                <i class="sidebar__social-icon bi bi-instagram"></i>
+                              </a>
+                              <a class="sidebar__social-link" href="#">
+                                <i class="sidebar__social-icon bi bi-linkedin"></i>
+                              </a>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-9">
+                        <div id="post-status" class="post-status"></div>
+                           
+                        <button class="delete-btn">حذف اگهی</button>
+                        <ul class="nav nav-pills mb-3" id="pills-tab"
+                            role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active"
+                                    id="pills-details-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-details"
+                                    type="button"
+                                    role="tab" aria-controls="pills-details"
+                                    aria-selected="true">پیش نمایش</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-edit-tab"
+                                    data-bs-toggle="pill"
+                                    data-bs-target="#pills-edit"
+                                    type="button" role="tab"
+                                    aria-controls="pills-edit"
+                                    aria-selected="false">ویرایش</button>
+                            </li>
+
+                        </ul>
+
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active"
+                                id="pills-details" role="tabpanel"
+                                aria-labelledby="pills-details-tab">
+
+                                <div class="details">
+                                    <p id="post-title" class="title"></p>
+                                    <p id="post-location" class="location"></p>
+                                    <ul class="post__info-list"
+                                        id="post-infoes-list"></ul>
+                                    <div class="description">
+                                        <p>توضیحات</p>
+                                        <p id="post-description"></p>
+                                    </div>
+                                </div>
+                                <div class="map-container">
+                                    <div id="preview-map"></div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade"
+                                id="pills-edit"
+                                role="tabpanel"
+                                aria-labelledby="pills-edit-tab">
+
+                                <div class="category-title-box">
+                                    <p id="category-title"></p>
+                                </div>
+
+                                <div>
+                                    <p class="edit-title">موقعیت مکانی آگهی</p>
+                                    <span class="location-description">آگهی‌های
+                                        با
+                                        موقعیت مکانی به <span>نقشهٔ دیوار</span>
+                                        اضافه ‌شده و بیشتر دیده می‌شوند.</span>
+                                    <div id="edit-map"></div>
+                                    <div class="map-controll">
+                                        <p>موقعیت دقیق نمایش داده نشود</p>
+                                        <label class="switch">
+                                            <input class="icon-controll"
+                                                type="checkbox">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="uploader">
+                                    <p class="edit-title">عکس آگهی</p>
+                                    <span>عکس‌هایی مربوط به آگهی اضافه کنید.</span>
+                                    <span>در صورت نداشتن عکس ، آگهی را بدون عکس
+                                        ثبت کنید</span>
+                                   <div class="post-images" id="post-images">
+                                    <div class="uploader-box">
+                                        <i class="bi bi-image"></i>
+                                        <i class="bi bi-plus-circle-fill"></i>
+                                        <input id="uploader" type="file">
+                                    </div>
+                                   </div>
+                                    <span>تعداد عکس‌های انتخاب شده نباید بیشتر
+                                        از ۲۰ باشد.</span>
+                                </div>
+                                <div class="groups" id="dynamic-fields"></div>
+
+                                <div class="groups">
+                                    <div class="group edit-post-title">
+                                        <p class="edit-title">عنوان آگهی</p>
+                                        <span>در عنوان آگهی به موارد مهمی مانند
+                                            نوع ملک و متراژ اشاره کنید. </span>
+                                        <input id="post-title-input" type="text" value="فروش مغازه">
+                                    </div>
+
+                                    <div class="group edit-post-title">
+                                        <p class="edit-title">توضیحات آگهی</p>
+                                        <span>در توضیحات آگهی به مواردی مانند
+                                            شرایط فروش، جزئیات و ویژگی‌های قابل
+                                            توجه، دسترسی‌های محلی و موقعیت
+                                            قرارگیری ملک اشاره کنید.</span>
+                                        <textarea id="post-description-input" id cols="30" rows="8"
+                                            placeholder="فروش مغازه">
+                                        </textarea>
+                                        <button>ثبت تغییرات</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!--!==========================================End Main==========================================!-->
+
+            <!--!==========================================city Modal==========================================!-->
+            <div class="city-modal" id="city-modal">
+                <div class="city-modal__overlay"></div>
+                <section>
+                    <div class="city-modal__header">
+                        <div class="city-modal__header-wrapper">
+                            <div class="city-modal__title-wrapper">
+                                <span class="city-modal__title">انتخاب شهر</span>
+                                <button class="city-modal__btn">حذف همه</button>
+                            </div>
+                            <div class="city-modal__selected">
+                                <div class="city-modal__selected-item">
+                                    <span class="city-modal__selected-text">اصفهان</span>
+                                    <button class="city-modal__selected-btn">
+                                        <i class="city-modal__selected-icon bi bi-x"></i>
+                                    </button>
+                                </div>
+                                <div class="city-modal__selected-item">
+                                    <span class="city-modal__selected-text">اصفهان</span>
+                                    <button class="city-modal__selected-btn">
+                                        <i class="city-modal__selected-icon bi bi-x"></i>
+                                    </button>
+                                </div>
+                                <div class="city-modal__selected-item">
+                                    <span class="city-modal__selected-text">اصفهان</span>
+                                    <button class="city-modal__selected-btn">
+                                        <i class="city-modal__selected-icon bi bi-x"></i>
+                                    </button>
+                                </div>
+                                <div class="city-modal__selected-item">
+                                    <span class="city-modal__selected-text">اصفهان</span>
+                                    <button class="city-modal__selected-btn">
+                                        <i class="city-modal__selected-icon bi bi-x"></i>
+                                    </button>
+                                </div>
+                                <div class="city-modal__selected-item">
+                                    <span class="city-modal__selected-text">اصفهان</span>
+                                    <button class="city-modal__selected-btn">
+                                        <i class="city-modal__selected-icon bi bi-x"></i>
+                                    </button>
+                                </div>
+                                <div class="city-modal__selected-item">
+                                    <span class="city-modal__selected-text">اصفهان</span>
+                                    <button class="city-modal__selected-btn">
+                                        <i class="city-modal__selected-icon bi bi-x"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="city-modal__searchbar">
+                                <form class="city-modal__form">
+                                    <input class="city-modal__input" type="text" placeholder="جستجو در شهرها">
+                                    <i class="city-modal__icon bi bi-search"></i>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="city-modal__cities">
+                        <ul class="city-modal__cities-list">
+                            <li class="city-modal__cities-item">
+                                اصفهان
+                                <i class="city-modal__cities-icon bi bi-chevron-left"></i>
+                            </li>
+                            <li class="city-modal__cities-item">
+                                اصفهان
+                                <i class="city-modal__cities-icon bi bi-chevron-left"></i>
+                            </li>
+                            <li class="city-modal__cities-item">
+                                اصفهان
+                                <i class="city-modal__cities-icon bi bi-chevron-left"></i>
+                            </li>
+                            
+                        </ul>
+                   
+                    </div>
+                    <div class="city-modal__footer">
+                        <div class="city-modal__footer-wrapper">
+                            <button class="city-modal__btn-footer city-modal__close">انصراف</button>
+                            <button class="city-modal__btn-footer city-modal__accept--active">تایید</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!--!==========================================End city Modal==========================================!-->
+
+            <script src="/vendor/bootstrap/bootstrap.js"></script>
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+                crossorigin></script>
+            <script src="/public/js/userPanel/posts/preview.js" type="module"></script>
+            <script src="/public/js/shared.js" type="module"></script>
+            <script src="/public/js/userPanel/shared.js" type="module"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        </body>
+    </html>

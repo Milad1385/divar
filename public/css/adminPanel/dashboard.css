@@ -1,0 +1,40 @@
+.boxes{
+   display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+.box div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.box span{
+    display: block;
+    color: #a62626;
+}
+.box{
+    background-color: white;
+    padding: 1rem 2rem 1rem 1rem;
+    width: 300px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #a62626;
+}
+
+.statistics .title{
+    margin-bottom:2rem;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+.statistics{
+    display: flex;
+    gap: 20px;
+    padding: 3rem 0rem;
+}
+.users ,.posts{
+    background-color: white;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    padding: 0 1.5rem 2rem;
+}

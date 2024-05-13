@@ -1,0 +1,56 @@
+.main {
+    margin: 7.8rem auto;
+    font-size: 1.5rem;
+    width: 584px;  
+}
+.breadcrumb .bi,.breadcrumb a{
+    color: black;
+}
+
+.breadcrumb{
+    font-size: 1.3rem;
+    display: flex;
+    gap: 5px;
+}
+.category-info-title{
+ font-size: 1.7rem;
+ font-weight: 800;
+ color: black;
+ margin-top: 1rem;
+}
+.category-info-icon{
+    object-fit: contain;
+    width: 115px;
+    height: 80px;
+}
+.category-info{
+    text-align: center;
+    margin-top: 3rem;
+}
+.articles{ 
+    margin-top: 4rem; 
+    margin-bottom: 40rem;
+}
+.articles a img{
+    margin-bottom: 1.5rem;
+}
+.articles a p{
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: black;
+}
+.articles a .bi{
+    color: black;
+}
+.articles a{
+    display: flex;
+    border-radius: 5px;
+    margin-top: 2rem;
+    text-align: right;
+    padding: 2rem ;
+    border: 1px solid rgba(0, 0, 0, 0.151);
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem; 
+}
+

@@ -1,0 +1,234 @@
+@import url(../share.css);
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background: #e4e4e4 !important;
+    font-family: "iransans-regular" !important;
+    direction: rtl;
+}
+
+.panel-container {
+    padding: 0;
+    display: flex;
+}
+
+.panel-container aside {
+    width: 300px;
+    background: #a62626;
+    padding: 1rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+.sidebar-title img {
+    width: 40px;
+}
+
+.sidebar-title p {
+    color: white;
+}
+
+.sidebar-title span {
+    color: white;
+    background: #a62626;
+    text-align: center;
+    font-size: 1.5rem;
+    position: relative;
+    display: block;
+    z-index: 99;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.sidebar-title div:nth-child(2)::before {
+    content: "";
+    width: 100%;
+    right: 0;
+    height: 1px;
+    background: white;
+    position: absolute;
+    top: 9px;
+}
+
+.sidebar-title div:nth-child(2) {
+    position: relative;
+}
+
+.sidebar-title {
+    position: relative;
+    margin-bottom: 40px;
+
+}
+
+.sidebar-title div {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 2rem;
+}
+.sidebar-title div p{
+    margin: 15px 0;
+}
+.sidebar-items li a .bi,
+.sidebar-items li a p {
+    color: white;
+    margin: 15px 0;
+}
+
+.sidebar-items li .active {
+    opacity: 1 !important;
+}
+
+.sidebar-items li a:hover {
+    opacity: 1;
+}
+
+.sidebar-items li a {
+    text-decoration: none;
+    opacity: .6;
+    margin-top: 10px !important;
+    transition: .1 all ease-in;
+    display: flex;
+    cursor: pointer;
+    gap: 10px;
+    font-size: 1.7rem;
+}
+
+nav {
+    background: white;
+    width: 100%;
+    padding: .5rem;
+}
+
+.contents {
+    width: 100%;
+}
+
+.contents-title::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    height: 3px;
+    background: #a62626;
+    right: 0;
+    width: 100%;
+}
+
+.contents-title p {
+    background: #e4e4e4;
+    padding: 0 10px;
+    width: max-content;
+    margin: 0 auto;
+    color: black;
+    z-index: 999;
+    display: block;
+    position: relative;
+}
+
+.contents-title {
+    position: relative;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+    font-size: 3rem;
+}
+
+.profile img {
+    border-radius: 100px;
+}
+
+.profile p {
+    font-size: 1.5rem;
+}
+
+.profile {
+    display: flex;
+    gap: 10px;
+}
+
+.logout p {
+    margin-left: 2rem;
+}
+
+.logout p,
+.logout .bi {
+    margin: 0;
+    color: #a62626;
+}
+
+.logout {
+    transition: .1 all ease-in;
+    display: flex;
+    cursor: pointer;
+    justify-content: left;
+    padding-left: 1rem;
+    gap: 10px;
+    width: 100%;
+    font-size: 1.7rem;
+}
+
+.contents {
+    padding: 2rem 4rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 1.5rem;
+    background-color: white;
+}
+
+table td,
+table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+
+table th {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    background-color: #a62626 !important;
+    color: white !important;
+}
+
+.no-verify {
+    color: #a62626;
+}
+
+
+.delete-btn,
+.edit-btn {
+    transition: .1s all ease-in;
+    width: 80%;
+    padding: .5rem .5rem .3rem;
+    border-radius: 5px;
+    font-family: "iransans-regular"; 
+    cursor: pointer;
+    border: 1px solid #a62626;
+    color: #a62626;
+    background-color: #ffffff;
+}
+.accordion-button:not(.collapsed),.accordion-button:focus { 
+    color: black !important;
+    background-color: white !important;
+    box-shadow: none !important;
+}
+.accordion-button:not(.collapsed)::after {  
+    background-image: var(--bs-accordion-btn-icon) !important;
+}
+.accordion-button{
+    background-color: transparent !important;
+    padding-right: 2rem !important;
+    padding: 18px 1.25rem;
+}
+.accordion-button::after{
+   right: 1px;
+   position: absolute;
+}
+.accordion,.accordion-item,.accordion-button:not(.collapsed), .accordion-button:focus {
+    background-color: transparent !important;
+    font-size: 1.5rem;
+}

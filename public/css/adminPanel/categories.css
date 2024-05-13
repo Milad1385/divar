@@ -1,0 +1,44 @@
+.back-to-post-categories-btn * { 
+    color: #a62626;
+}
+.back-to-post-categories-btn { 
+    display: none;
+    cursor: pointer;
+    align-items: center;
+    gap: 5px; 
+    font-size: 1.5rem;
+}
+
+.group input{
+    border-radius: 5px;
+    padding: 1rem;
+    font-size: 1.3rem;
+    width: 300px; 
+    background: white;
+}
+.group label{
+    color: black;
+}
+.group{
+    gap: 5px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.accordion-body button{
+    transition: .1s all ease-in;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    padding: 1rem 3rem;
+    display: block;
+    border-radius: 5px;
+    font-family: "iransans-regular";
+    cursor: pointer;
+    color: #a62626;
+    border:1px solid #a62626;
+}
+.groups{
+    display: flex;
+    justify-content: space-between;
+}

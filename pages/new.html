@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" href="/vendor/bootstrap_icon/bootstraicon.css" />
+    <link rel="stylesheet" href="/public/css/share.css" />
+    <link rel="stylesheet" href="/public/css/new.css" />
+  </head>
+
+  <body>
+    <!--!==========================================Header==========================================!-->
+    <header class="header">
+      <div class="container-fluid">
+        <div class="header__wrapper">
+          <div class="header__right">
+              <a class="header__logo-link" href="/pages/posts.html">
+              <img class="header__logo-img" src="/public/images/header/logo.svg"
+                alt="logo">
+            </a>
+            <button class="header__city">
+              <i class="header__city-icon bi bi-geo-alt"></i>
+              <span class="header__city-title" id="header-city-title"></span>
+            </button>
+          </div>
+          <div class="header__left">
+            <div class="dropdown header_dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="header__left-icon bi bi-person"></i>
+                دیوار من
+              </button>
+              <ul class="dropdown-menu header_dropdown_menu"></ul>
+
+            </div>
+            <a class="header__left-link" href="/pages/support.html">
+              پشتیبانی
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!--!==========================================End Header==========================================!-->
+
+    <!--!===========================================Main==========================================!-->
+    <main class="main">
+      <div class="container">
+        <p class="new_title">ثبت آگهی</p>
+        <p class="select_category_title">انتخاب دسته‌بندی</p>
+        <div class="search_box">
+          <i class="bi bi-search"></i>
+          <input type="text" placeholder="جستجو در دسته‌ها">
+          <div class="result active">
+            <p>فروش خانه و ویلا</p>
+            <p>فروش خانه و ویلا</p>
+            <p>فروش خانه و ویلا</p>
+          </div>
+        </div>
+        <div class="guide">
+          <p>نمایش راهنمای دسته‌بندی</p>
+          <label class="switch">
+            <input class="icon-controll"
+              type="checkbox">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <section>
+          <div class="box">
+            <div>
+              <i class="bi bi-house-door"></i>
+              <p>املاک</p>
+            </div>
+            <i class="bi bi-chevron-left"></i>
+            <span>اجارهٔ مسکونی، فروش مسکونی، فروش دفاتر اداری و تجاری، اجارهٔ
+              دفاتر اداری و تجاری، پرو‌ژه‌های ساخت و ساز، اجارهٔ کوتاه مدت</span>
+          </div>
+          <div class="box">
+            <div>
+              <i class="bi bi-house-door"></i>
+              <p>املاک</p>
+            </div>
+            <i class="bi bi-chevron-left"></i>
+            <span>اجارهٔ مسکونی، فروش مسکونی، فروش دفاتر اداری و تجاری، اجارهٔ
+              دفاتر اداری و تجاری، پرو‌ژه‌های ساخت و ساز، اجارهٔ کوتاه مدت</span>
+          </div>
+          <div class="box">
+            <div>
+              <i class="bi bi-house-door"></i>
+              <p>املاک</p>
+            </div>
+            <i class="bi bi-chevron-left"></i>
+            <span>اجارهٔ مسکونی، فروش مسکونی، فروش دفاتر اداری و تجاری، اجارهٔ
+              دفاتر اداری و تجاری، پرو‌ژه‌های ساخت و ساز، اجارهٔ کوتاه مدت</span>
+          </div>
+          <div class="box">
+            <div>
+              <i class="bi bi-house-door"></i>
+              <p>املاک</p>
+            </div>
+            <i class="bi bi-chevron-left"></i>
+            <span>اجارهٔ مسکونی، فروش مسکونی، فروش دفاتر اداری و تجاری، اجارهٔ
+              دفاتر اداری و تجاری، پرو‌ژه‌های ساخت و ساز، اجارهٔ کوتاه مدت</span>
+          </div>
+          <div class="box">
+            <div>
+              <i class="bi bi-house-door"></i>
+              <p>املاک</p>
+            </div>
+            <i class="bi bi-chevron-left"></i>
+            <span>اجارهٔ مسکونی، فروش مسکونی، فروش دفاتر اداری و تجاری، اجارهٔ
+              دفاتر اداری و تجاری، پرو‌ژه‌های ساخت و ساز، اجارهٔ کوتاه مدت</span>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!--!==========================================End Main==========================================!-->
+
+    <!--!==========================================city Modal==========================================!-->
+    <div class="city-modal" id="city-modal">
+      <div class="city-modal__overlay"></div>
+      <section>
+          <div class="city-modal__header">
+              <div class="city-modal__header-wrapper">
+                  <div class="city-modal__title-wrapper">
+                      <span class="city-modal__title">انتخاب شهر</span>
+                      <button id="delete-all-cities" class="city-modal__btn delete_cities">حذف همه</button>
+                  </div>
+                  <p id="city_modal_error">حداقل یک شهر را انتخاب کنید.</p>
+                  <div class="city-modal__selected" id="city-selected"></div>
+                  <div class="city-modal__searchbar">
+                      <form class="city-modal__form">
+                          <input class="city-modal__input"  id="city-modal-search-input" type="text" placeholder="جستجو در شهرها">
+                          <i class="city-modal__icon bi bi-search"></i>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <div class="city-modal__cities">
+              <ul class="city-modal__cities-list" id="city_modal_list"></ul>
+         
+          </div>
+          <div class="city-modal__footer">
+              <div class="city-modal__footer-wrapper">
+                  <button class="city-modal__btn-footer city-modal__close">انصراف</button>
+                  <button class="city-modal__btn-footer city-modal__accept ">تایید</button>
+              </div>
+          </div>
+      </section>
+  </div>
+    <!--!==========================================End city Modal==========================================!-->
+    <!--!==========================================Login Modal==========================================!-->
+    <div class="login-modal" id="login-modal">
+      <section class="login_modal_step_1">
+        <div class="login-modal__header">
+            <div class="login-modal__header-wrapper">
+                <span class="login-modal__title">ورود به حساب کاربری</span>
+                <button class="login-modal__header-btn">
+                    <i class="login-modal__icon bi bi-x"></i>
+                </button>
+            </div>
+        </div>
+        <div class="login-modal__main">
+            <span class="login-modal__main-title">شماره موبایل خود را وارد کنید.</span>
+            <p class="login-modal__main-notic">قبل از ثبت آگهی، لطفاً وارد حساب خود شوید.</p>
+            <p class="login-modal__main-notic">کد تأیید به این شماره پیامک می‌شود.</p>
+            <div class="login-modal__form-wrapper">
+                <form class="login-modal__form" action="#">
+                    <input class="login-modal__input phone_Number_input"   placeholder="شماره موبایل">
+                    <span class="step-1-login-form__error"></span>
+                </form>
+                <span class="login-modal__form-text">+98</span>
+            </div>
+            <div class="login-modal__condition">
+                <a class="login-modal__condition-link" href="#">شرایط استفاده از خدمات</a>
+                <span class="login-modal__condition-text">و</span>
+                <a class="login-modal__condition-link" href="#">حریم خصوصی</a>
+                <span class="login-modal__condition-text">دیوار را میپذیرم.</span>
+            </div>
+        </div>
+        <div class="login-modal__footer">
+            <button class="login-modal__footer-btn submit_phone_number_btn">تایید</button>
+        </div>
+      </section>
+      <section class="login_modal_step_2">
+        <div class="login-modal__header">
+            <div class="login-modal__header-wrapper">
+                <span class="login-modal__title">ورود به حساب کاربری</span>
+                <button class="login-modal__header-btn">
+                    <i class="login-modal__icon bi bi-x"></i>
+                </button>
+            </div>
+        </div>
+        <div class="login-modal__main">
+            <span class="login-modal__main-title">کد تأیید را وارد کنید</span>
+            <p class="login-modal__main-notic">کد پیامک‌شده به شمارۀ «<span class="user_number_notice">۰۹۰۴۶۴۱۷۰۸۴</span>» را وارد کنید.</p>
+         
+            <div class="login-modal__form-wrapper">
+                <form class="login-modal__form" action="#">
+                    <input class="login-modal__input code_input"  maxlength="4"  placeholder="کد تایید 4 رقمی">
+                    <span class="step-2-login-form__error"></span>
+                </form> 
+            </div>
+            <div class="login-modal__condition"> 
+                <span class="login-modal__condition-text login-change-number">تغییر شماره موبایل</span>
+            </div>
+        </div>
+        <div class="login-modal__footer">
+            <button class="login-modal__footer-btn req_new_code_btn">درخواست کد </button>
+            <div class="request_timer">
+                <p>درخواست مجدد</p>
+                <span>10</span>
+            </div>
+            <button class="login-modal__footer-btn login_btn">ورود</button>
+        </div>
+      </section>
+      <div class="overlay login_modal_overlay"></div>
+    </div>
+  <!--!==========================================End Login Modal==========================================!-->
+
+
+    <script src="/public/js/shared.js" type="module"></script>
+    <script src="/vendor/bootstrap/bootstrap.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/public/js/new.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,486 @@
+@import url(/public/css/userPanel/share.css);
+
+* {
+    font-size: 1.5rem; 
+}
+
+.publish {
+    color: green;
+    font-weight: 800;
+}
+
+.reject {
+    color: red;
+    font-weight: 800;
+}
+.pending {
+    color: orange;
+    font-weight: 800;
+}
+
+.post-status-description {
+    margin-top: 30px;
+}
+
+.delete-btn {
+    cursor: pointer;
+    line-height: 20px;
+    margin-top: 3rem;
+    margin-right: auto;
+    display: block;
+    border: 1px solid #a62626;
+    border-radius: 4px;
+    font-weight: 800;
+    width: max-content;
+    text-align: center;
+    padding: .8rem 1.3rem;
+    position: relative;
+    transition: color .36s ease, background-color .36s ease, box-shadow .36s ease, border-color .36s ease, transform .36s ease;
+    color: #a62626;
+}
+
+.delete-btn:hover {
+    background-color: rgba(166, 38, 38, .04);
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background: white !important;
+    color: #a62626;
+    border-bottom: 2px solid #a62626;
+    border-radius: 0;
+    padding-bottom: 15px;
+}
+
+.nav-link {
+    font-size: 1.8rem;
+    color: unset;
+}
+
+.nav-pills {
+    justify-content: center;
+    border-bottom: 1px solid rgb(0 0 0 / 11%);
+    gap: 50px;
+}
+
+.nav-link.active:hover {
+    background-color: rgba(166, 38, 38, .04);
+}
+
+.nav-link:focus,
+.nav-link:hover {
+    color: unset;
+}
+
+#pills-details {
+    display: flex;
+}
+
+.details {
+    padding-left: 120px;
+    width: 50%;
+}
+
+.map-container {
+    width: 50%;
+}
+
+.location {
+    font-size: 1.7rem;
+}
+
+.title {
+    font-weight: 800;
+    color: black;
+    margin: 20px 0;
+    font-size: 2.2rem;
+}
+
+.link {
+    display: flex;
+    padding: 20px 0;
+    margin-top: 2rem;
+    border-bottom: 1px solid rgb(0 0 0 / 11%);
+    border-top: 1px solid rgb(0 0 0 / 11%);
+    justify-content: space-between;
+}
+
+.link div {
+    display: flex;
+    gap: 30px;
+}
+
+.link i:hover {
+    color: black;
+}
+
+.link i {
+    cursor: pointer;
+}
+
+.link a {
+    color: #a62626;
+}
+
+.details section {
+    display: flex;
+    margin: 20px 0;
+
+}
+
+.details section div p:nth-child(2) {
+    color: black;
+    font-size: 1.6rem;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.details section div {
+    width: 100%;
+    text-align: center;
+}
+
+.details section div {
+    border-left: 1px solid rgb(0 0 0 / 11%);
+}
+
+.details section div:last-child {
+    border: 0;
+}
+
+#pills-details .group {
+    display: flex;
+    padding: 17px 0;
+    border-top: 1px solid rgb(0 0 0 / 11%);
+    justify-content: space-between;
+}
+
+#pills-details .group p:nth-child(2) {
+    color: black;
+}
+
+#pills-details .group:nth-child(5) p:nth-child(2) {
+    font-weight: 600;
+    color: #a62626 !important;
+}
+
+.description p:nth-child(1) {
+    font-weight: 600;
+    color: black;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-size: 1.8rem;
+}
+
+.description {
+    margin-bottom: 4rem;
+}
+
+#edit-map {
+    height: 400px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#preview-map {
+    height: 85%;
+    margin-top: 20px;
+}
+
+.fade:not(.show) {
+    opacity: 0;
+    display: none !important;
+}
+
+.category-title-box {
+    padding: 5px;
+    font-weight: 600;
+    border: 1px solid rgb(0 0 0 / 11%);
+    padding: 4rem 3rem 4rem 1rem;
+}
+
+#pills-edit {
+    max-width: 488px;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 4rem;
+}
+
+.edit-title {
+    font-weight: 600;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: black;
+}
+
+.location-description {
+    font-size:1.2rem;
+}
+
+.location-description span {
+    color: #a62626;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 53px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 19px;
+    width: 21px;
+    left: 2px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #a62626;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #a62626;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.map-controll {
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.308);
+    display: flex;
+    justify-content: space-between;
+}
+
+#edit-map .leaflet-zoom-animated {
+    height: 46px !important;
+}
+
+.uploader span {
+    font-size: 12px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.uploader {
+    margin-top: 9rem;
+    margin-bottom: 3rem;
+}
+
+.uploader-box {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    padding: 4rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+    margin-top: 3rem;
+    width: max-content;
+    border: dashed 2px rgba(0, 0, 0, 0.319);
+}
+
+.uploader-box:hover .bi-image {
+    color: black;
+}
+
+.uploader-box .bi-image {
+    font-size: 2rem;
+}
+
+.uploader-box .bi-plus-circle-fill {
+    position: absolute;
+    top: 33%;
+    right: 33px;
+    color: #be3737;
+}
+
+.uploader-box input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+#pills-edit .group input {
+    padding: 1rem;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.319);
+    border-radius: 5px;
+}
+
+#pills-edit textarea {
+    padding: 2rem 1.5rem;
+    border-radius: 5px;
+    color: black;
+}
+
+#pills-edit .group {
+    display: grid;
+}
+
+#pills-edit .group p:last-child {
+    margin-top: 10px;
+}
+
+.edit-post-title span {
+    font-size: 13px;
+    line-height: 2rem;
+    margin-bottom: 10px;
+}
+
+.edit-post-title button {
+    background-color: #a62626;
+    border: 0;
+    margin-top: 2rem;
+    width: max-content;
+    margin-right: auto;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 4rem;
+    font-weight: 500;
+    padding: 1.2rem 1.5rem;
+}
+.post__info-item a{
+    color: #a62626;
+}
+.post__info-value {
+    color:#000;
+}
+
+.post__info-list {
+    margin-top: 2rem;
+    padding-right: 0;
+}
+
+.post__info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 0;
+}
+
+.select {
+    position: relative;
+    direction: rtl;
+    min-width: 200px;
+}
+
+.select svg {
+    position: absolute;
+    left: 12px;
+    top: calc(50% - 3px);
+    width: 10px;
+    height: 6px;
+    stroke-width: 2px;
+    stroke: #9098a9;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    pointer-events: none;
+}
+
+.select select {
+    -webkit-appearance: none;
+    padding: 15px 12px 15px 12px;
+    width: 100%;
+    border: 1px solid #e8eaed;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 3px -2px #9098a9;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 150ms ease;
+}
+
+.select select:required:invalid {
+    color: #5a667f;
+}
+
+.select select option {
+    color: #223254;
+}
+
+.select select option[value=""][disabled] {
+    display: none;
+}
+
+.select select:focus {
+    outline: none;
+    border-color: #07f;
+    box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+}
+
+.select select:hover+svg {
+    stroke: #07f;
+}
+
+.sprites {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+.leaflet-control-attribution{
+    display: none;
+}
+
+.post-images{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: end;
+}
+.post-images img{
+    width: 100px;
+    border-radius: 5px;
+    height: 103px;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}

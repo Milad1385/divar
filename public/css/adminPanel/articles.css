@@ -1,0 +1,36 @@
+ 
+.accordion input{
+    padding: 1rem;
+    color: #000;
+    border: 1px solid #a62626;
+    border-radius: 5px;
+    font-family: "iransans-regular"; 
+    width: 250px;
+} 
+.ck.ck-editor { 
+    margin: 30px 0 !important;
+}
+.ck-editor__editable[role="textbox"] {
+   
+    min-height: 200px;
+}
+.ck-content .image { 
+    max-width: 80%;
+    margin: 20px auto;
+}
+.ck.ck-balloon-panel.ck-powered-by-balloon .ck.ck-powered-by a{
+    display: none !important;
+}
+.add-article-btn{
+    transition: .1s all ease-in; 
+    width:100%;
+    margin: 0 auto;
+    margin-bottom:5rem;
+    padding:1rem 3rem;
+    display: block;
+    border-radius: 5px;
+    font-family: "iransans-regular"; 
+    cursor: pointer; 
+    color: #ffffff;
+    background-color: #a62626;
+}

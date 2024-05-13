@@ -1,0 +1,114 @@
+ 
+.main {
+    margin-top: 15rem;
+}
+.intro__title {
+    font-size: 3.2rem;
+    font-family: "iransans-bold";
+    color:#000;
+}
+.intro__desc {
+    margin-top: 3rem;
+    font-size: 1.6rem;
+    text-align: justify;
+    line-height: 3rem;
+}
+.intro__left {
+    height: 35rem;
+    background-size: cover;
+    margin-right: 3rem;
+    background: url("/public/images/main/television.svg"), url("/public/images/main/television_background.png");
+}
+.partners {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 0 4rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.main__title {
+    font-size: 2.3rem;
+    color:#000;
+    font-family: "iransans-bold";
+    text-align: center;
+}
+.partners__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 6rem 0;
+}
+.partners__image {
+    width: 4.8rem;
+    height: 4.8rem;
+}
+.partners__item-title {
+    font-size: 1.6rem;
+    color:#000;
+    font-family: "iransans-medium";
+    margin: 2rem 0;
+}
+.partners__item-paragraph {
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 2.5rem;
+}
+.main__link {
+    display: block;
+    font-size: 1.6rem;
+    font-family: "iransans-medium";
+    color: #a62626;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    text-align: center;
+}
+.main__link:hover {
+    background-color: rgba(166, 38, 38, 0.1);
+    color: #a62626;
+}
+.job {
+    padding: 7rem 0 4rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.main__paragraph {
+    margin: 2rem 0;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    text-align: center;
+}
+.contact {
+    padding: 7rem 0 4rem 0;
+}
+.contact__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-family: "iransans-medium";
+    color:#000;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.contact__paragraphs {
+    margin: 3rem 0 1rem 0;
+}
+.contact__paragraph {
+    color:#000;
+    font-size: 1.5rem;
+    font-family: "iransans-medium";
+    margin: 1rem 0;
+}
+.contact__notic {
+    font-size:1.2rem;
+    margin: 1.5rem 0;
+} 
+
+#map{
+    height: 300px;
+    width: 100%;
+}
+#map .leaflet-zoom-animated {
+    height: 46px !important;
+}
