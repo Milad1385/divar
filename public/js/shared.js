@@ -7,6 +7,7 @@ import {
   getAllCategories,
   getAllLocations,
   getAndShowSocialIcons,
+  showPanelLinks,
 } from "../../utils/shared.js";
 import {
   addToUrlParam,
@@ -23,6 +24,7 @@ window.addEventListener("load", () => {
   let cities = [];
   getAndShowUserSelectCities();
   getAndShowSocialIcons();
+  showPanelLinks();
   getAllLocations().then((data) => {
     generateCities(data);
     cities = data;
@@ -72,14 +74,13 @@ window.addEventListener("load", () => {
   const searchValue = getUrlParam("q");
   const mostSearchResult = ["کیف", "کفش", "سواری ", "لپ تاپ", "سامسونگ"];
   let selectedCities = getLocalstorage("cities");
-  searchElem.value = searchValue;
+  searchElem ? (searchElem.value = searchValue) : null;
   // start category mega menu
 
   getAllCategories().then((categories) => {
-    console.log(categories);
-    categoriesList.innerHTML = "";
+    categoriesList ? (categoriesList.innerHTML = "") : null;
     categories.forEach((category) => {
-      categoriesList.insertAdjacentHTML(
+      categoriesList?.insertAdjacentHTML(
         "beforeend",
         `
         <li class="header__category-menu-item" onmouseenter="showActiveCategorySubs('${category._id}')">
@@ -102,9 +103,9 @@ window.addEventListener("load", () => {
         (category) => category._id === categoryId
       );
 
-      categoryResults.innerHTML = "";
+      categoryResults ? (categoryResults.innerHTML = "") : null;
       category.subCategories.forEach((subCategory) => {
-        categoryResults.insertAdjacentHTML(
+        categoryResults?.insertAdjacentHTML(
           "beforeend",
           `
           <div>
@@ -170,7 +171,7 @@ window.addEventListener("load", () => {
   });
 
   mostSearchResult.forEach((most) => {
-    mostSearchDropdownListElem.insertAdjacentHTML(
+    mostSearchDropdownListElem?.insertAdjacentHTML(
       `beforeend`,
       `
       <li>
@@ -198,9 +199,9 @@ window.addEventListener("load", () => {
 
     if (!provinceName) {
       let mainCities = citiesItem.filter((city) => !city?.provinceId);
-      citySelected.innerHTML = "";
+      citySelected ? (citySelected.innerHTML = "") : null;
       mainCities.forEach((city) => {
-        citySelected.insertAdjacentHTML(
+        citySelected?.insertAdjacentHTML(
           "beforeend",
           `
             <div class="city-modal__selected-item">
@@ -284,10 +285,10 @@ window.addEventListener("load", () => {
   };
 
   const generateCities = (data) => {
-    cityModalListElem.innerHTML = "";
-    cityModalCitiesContainer.scrollTo(0, 0);
+    cityModalListElem ? (cityModalListElem.innerHTML = "") : null;
+    cityModalCitiesContainer?.scrollTo(0, 0);
     data.provinces.forEach((province) => {
-      cityModalListElem.insertAdjacentHTML(
+      cityModalListElem?.insertAdjacentHTML(
         "beforeend",
         `
         <li

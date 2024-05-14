@@ -1,4 +1,4 @@
-import { getToken, getUrlParam } from "./utils.js";
+import { getMe, getToken, getUrlParam, isLogin } from "./utils.js";
 
 const baseUrl = "https://divarapi.liara.run";
 
@@ -82,6 +82,127 @@ const getPostDetails = async () => {
   return result.data.post;
 };
 
+const showPanelLinks = async () => {
+  const dropDown = document.querySelector(".header_dropdown_menu");
+  const userLogin = await isLogin();
+
+  dropDown.innerHTML = "";
+
+  if (dropDown) {
+    if (userLogin) {
+      getMe().then((user) => {
+        dropDown.insertAdjacentHTML(
+          "beforeend",
+          `
+              <li class="header__left-dropdown-item header_dropdown-item_account">
+                <a
+                  href="/pages/userPanel/posts.html"
+                  class="header__left-dropdown-link login_dropdown_link"
+                >
+                  <i class="header__left-dropdown-icon bi bi-box-arrow-in-left"></i>
+                  <div>
+                    <span>کاربر دیوار </span>
+                    <p>تلفن ${user.phone}</p>
+                  </div>
+                </a>
+              </li>
+              <li class="header__left-dropdown-item">
+                <a class="header__left-dropdown-link" href="/pages/userPanel/verify.html">
+                  <i class="header__left-dropdown-icon bi bi-bookmark"></i>
+                  تایید هویت
+                </a>
+              </li>
+              <li class="header__left-dropdown-item">
+                <a class="header__left-dropdown-link" href="/pages/userPanel/bookmarks.html">
+                  <i class="header__left-dropdown-icon bi bi-bookmark"></i>
+                  نشان ها
+                </a>
+              </li>
+              <li class="header__left-dropdown-item">
+                <a class="header__left-dropdown-link" href="/pages/userPanel/notes.html">
+                  <i class="header__left-dropdown-icon bi bi-journal"></i>
+                  یادداشت ها
+                </a>
+              </li>
+              <li class="header__left-dropdown-item logout-link" id="login_btn">
+                <p class="header__left-dropdown-link" href="#">
+                  <i class="header__left-dropdown-icon bi bi-shop"></i>
+                  خروج
+                </p>
+              </li>
+          `
+        );
+      });
+    } else {
+      dropDown.insertAdjacentHTML(
+        "beforeend",
+        `
+          <li class="header__left-dropdown-item">
+            <span id="login-btn" class="header__left-dropdown-link login_dropdown_link">
+              <i class="header__left-dropdown-icon bi bi-box-arrow-in-left"></i>
+              ورود
+            </span>
+          </li>
+          <li class="header__left-dropdown-item">
+            <div class="header__left-dropdown-link" href="#">
+              <i class="header__left-dropdown-icon bi bi-bookmark"></i>
+              نشان ها
+            </div>
+          </li>
+          <li class="header__left-dropdown-item">
+            <div class="header__left-dropdown-link" href="#">
+              <i class="header__left-dropdown-icon bi bi-journal"></i>
+              یادداشت ها
+            </div>
+          </li>
+          <li class="header__left-dropdown-item">
+            <div class="header__left-dropdown-link" href="#">
+              <i class="header__left-dropdown-icon bi bi-clock-history"></i>
+              بازدید های اخیر
+            </div>
+          </li>
+        `
+      );
+
+      dropDown.addEventListener("click", () => {
+        showModal("login-modal", "login-modal--active");
+      });
+    }
+  }
+};
+
+const getAllArticles = async () => {
+  const res = await fetch(`${baseUrl}/v1/support/category-articles`);
+  const result = await res.json();
+  console.log(result);
+
+  return result.data.categories;
+};
+
+const getSingleArticle = async (id) => {
+  const res = await fetch(`${baseUrl}/v1/support/articles/${id}`);
+  const result = await res.json();
+  return result.data.article;
+};
+
+const getSameArticles = async (categoryID) => {
+  const res = await fetch(
+    `${baseUrl}/v1/support/categories/${categoryID}/articles`
+  );
+  const result = await res.json();
+
+  return result.data.articles;
+};
+
+const getSearchResults = async (key) => {
+  const res = await fetch(`${baseUrl}/v1/support/articles/search?s=${key}`);
+  const result = await res.json();
+
+  console.log(result);
+
+  return result.data.articles;
+};
+
 export {
   baseUrl,
   getAllCities,
@@ -90,4 +211,9 @@ export {
   getAllCategories,
   getAllLocations,
   getPostDetails,
+  showPanelLinks,
+  getAllArticles,
+  getSingleArticle,
+  getSameArticles,
+  getSearchResults,
 };
