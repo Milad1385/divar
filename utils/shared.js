@@ -66,6 +66,9 @@ const getAllLocations = async () => {
 
 const getPostDetails = async () => {
   const postId = getUrlParam("id");
+  if (!postId) {
+    location.href = "/pages/posts.html";
+  }
   let headers = {};
   const token = getToken();
 

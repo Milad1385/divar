@@ -16,11 +16,12 @@ import {
   getLocalstorage,
   getUrlParam,
   hideModal,
+  isLogin,
   setToLocalstorage,
   showModal,
 } from "../../utils/utils.js";
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   let cities = [];
   getAndShowUserSelectCities();
   getAndShowSocialIcons();
@@ -29,6 +30,7 @@ window.addEventListener("load", () => {
     generateCities(data);
     cities = data;
   });
+  const isUserLogin = await isLogin();
   // city element
   const searchElem = document.querySelector("#global_search_input");
   const overlayElem = document.querySelector("#overlay-elem");
@@ -66,6 +68,8 @@ window.addEventListener("load", () => {
   const submitPhoneNumberBtn = document.querySelector(
     ".submit_phone_number_btn"
   );
+
+  const createPostBtn = document.querySelector(".create_post_btn");
 
   const sendOtpBtn = document.querySelector(".login_btn");
   const reSendOtpBtn = document.querySelector(".req_new_code_btn");
@@ -593,4 +597,16 @@ window.addEventListener("load", () => {
     requestNewOtpCode();
   });
   // finish login modal
+
+  // start create post events
+  createPostBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (isUserLogin) {
+      location.href = "/pages/new.html";
+    } else {
+      hideModal("header__category-menu", "header__category-menu--active");
+      showModal("login-modal", "login-modal--active");
+    }
+  });
 });

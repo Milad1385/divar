@@ -30,7 +30,6 @@ window.addEventListener("load", async () => {
 
   getPostDetails().then((post) => {
     const date = calculateRelativeTimeDeffrence(post.createdAt);
-    console.log(post);
     loadingElem.style.display = "none";
     description.innerHTML = post.description;
     title.innerHTML = post.title;
