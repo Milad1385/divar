@@ -59,23 +59,28 @@
         <div class="search_box">
           <i class="bi bi-search"></i>
           <input type="text" placeholder="جستجو در دسته‌ها" />
+          <i class="bi-x"></i>
           <div class="result">
-            <p>فروش خانه و ویلا</p>
-            <p>فروش خانه و ویلا</p>
-            <p>فروش خانه و ویلا</p>
+            <!-- data loaded from js -->
           </div>
         </div>
-        <div class="guide">
-          <p>نمایش راهنمای دسته‌بندی</p>
-          <label class="switch">
-            <input class="icon-controll" type="checkbox" />
-            <span class="slider round"></span>
-          </label>
+        <div class="show-categoies active">
+          <span>دیدن تمام دسته‌های دیوار</span>
+          <i class="bi bi-chevron-left"></i>
         </div>
+        <div class="all-categories">
+          <div class="guide">
+            <p>نمایش راهنمای دسته‌بندی</p>
+            <label class="switch">
+              <input class="icon-controll" type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+          </div>
 
-        <section id="boxes-container">
-          <!-- data loaded from js -->
-        </section>
+          <section id="boxes-container">
+            <!-- data loaded from js -->
+          </section>
+        </div>
       </div>
     </main>
     <!--!==========================================End Main==========================================!-->

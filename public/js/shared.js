@@ -27,9 +27,9 @@ window.addEventListener("load", async () => {
   getAndShowSocialIcons();
   showPanelLinks();
   getAllLocations().then((data) => {
-    generateCities(data);
     cities = data;
   });
+
   const isUserLogin = await isLogin();
   // city element
   const searchElem = document.querySelector("#global_search_input");
@@ -316,6 +316,8 @@ window.addEventListener("load", async () => {
       });
     });
   };
+
+  generateCities(cities);
 
   addCityToModal(selectedCities);
 
