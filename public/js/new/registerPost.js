@@ -1,5 +1,5 @@
 import { baseUrl, getAllLocations } from "../../../utils/shared.js";
-import { getUrlParam, showSwal } from "../../../utils/utils.js";
+import { getToken, getUrlParam, showSwal } from "../../../utils/utils.js";
 
 window.addEventListener("load", async () => {
   const loading = document.querySelector("#loading-container");
@@ -9,6 +9,12 @@ window.addEventListener("load", async () => {
   const productsFieldsContainer = document.querySelector(".product-field");
   const imageUploader = document.querySelector(".image-uploader");
   const imageContainer = document.querySelector(".image-container");
+  const changeIcon = document.querySelector(".icon-controll");
+  const sendPostBtn = document.querySelector("#send-post");
+  const exchange = document.querySelector("#exchange");
+  const priceInput = document.querySelector("#price");
+  const titleInput = document.querySelector("#title");
+  const descInput = document.querySelector("#desc");
 
   const categoryID = getUrlParam("id");
   const res = await fetch(`${baseUrl}/v1/category/sub/${categoryID}`);
@@ -210,5 +216,123 @@ window.addEventListener("load", async () => {
         );
       }
     });
+  });
+
+  // handle map
+  let mapView = { x: 35.715298, y: 51.404343 };
+  let markerIcon = null;
+  let iconStatus = "FIRST_ICON";
+
+  const map = L.map("map").setView([35.715298, 51.404343], 13);
+
+  let firstIcon = L.icon({
+    iconUrl:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjciIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyNyA0OCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InBpbi1hIiB4MT0iNTAlIiB4Mj0iNTAlIiB5MT0iMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0E2MjYyNiIgc3RvcC1vcGFjaXR5PSIuMzIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjQTYyNjI2Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHBhdGggaWQ9InBpbi1jIiBkPSJNMTguNzk0MzMzMywxNC40NjA0IEMxOC43OTQzMzMzLDE3LjQwNTQ1OTkgMTYuNDA3NDQ5NiwxOS43OTM3MzMzIDEzLjQ2MDEwNDcsMTkuNzkzNzMzMyBDMTAuNTE0NTUwNCwxOS43OTM3MzMzIDguMTI3NjY2NjcsMTcuNDA1NDU5OSA4LjEyNzY2NjY3LDE0LjQ2MDQgQzguMTI3NjY2NjcsMTEuNTE1MzQwMSAxMC41MTQ1NTA0LDkuMTI3MDY2NjcgMTMuNDYwMTA0Nyw5LjEyNzA2NjY3IEMxNi40MDc0NDk2LDkuMTI3MDY2NjcgMTguNzk0MzMzMywxMS41MTUzNDAxIDE4Ljc5NDMzMzMsMTQuNDYwNCIvPgogICAgPGZpbHRlciBpZD0icGluLWIiIHdpZHRoPSIyMzEuMiUiIGhlaWdodD0iMjMxLjIlIiB4PSItNjUuNiUiIHk9Ii00Ni45JSIgZmlsdGVyVW5pdHM9Im9iamVjdEJvdW5kaW5nQm94Ij4KICAgICAgPGZlT2Zmc2V0IGR5PSIyIiBpbj0iU291cmNlQWxwaGEiIHJlc3VsdD0ic2hhZG93T2Zmc2V0T3V0ZXIxIi8+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0ic2hhZG93T2Zmc2V0T3V0ZXIxIiByZXN1bHQ9InNoYWRvd0JsdXJPdXRlcjEiIHN0ZERldmlhdGlvbj0iMiIvPgogICAgICA8ZmVDb2xvck1hdHJpeCBpbj0ic2hhZG93Qmx1ck91dGVyMSIgdmFsdWVzPSIwIDAgMCAwIDAgICAwIDAgMCAwIDAgICAwIDAgMCAwIDAgIDAgMCAwIDAuMjQgMCIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgogIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICA8cGF0aCBmaWxsPSJ1cmwoI3Bpbi1hKSIgZD0iTTEzLjA3MzcsMS4wMDUxIEM1LjgwMzIsMS4yMTUxIC0wLjEzOTgsNy40Njg2IDAuMDAyNywxNC43MzkxIEMwLjEwOTIsMjAuMTkwMSAzLjQ1NTcsMjQuODQ2MSA4LjE5NTcsMjYuODYzNiBDMTAuNDUzMiwyNy44MjUxIDExLjk3MTIsMjkuOTc0NiAxMS45NzEyLDMyLjQyODYgTDExLjk3MTIsMzkuNDExNTUxNCBDMTEuOTcxMiw0MC4yMzk1NTE0IDEyLjY0MTcsNDAuOTExNTUxNCAxMy40NzEyLDQwLjkxMTU1MTQgQzE0LjI5OTIsNDAuOTExNTUxNCAxNC45NzEyLDQwLjIzOTU1MTQgMTQuOTcxMiwzOS40MTE1NTE0IEwxNC45NzEyLDMyLjQyNTYgQzE0Ljk3MTIsMzAuMDEyMSAxNi40MTcyLDI3LjgzNDEgMTguNjQ0NywyNi45MDU2IEMyMy41MTY3LDI0Ljg3NzYgMjYuOTQxMiwyMC4wNzYxIDI2Ljk0MTIsMTQuNDcwNiBDMjYuOTQxMiw2Ljg5ODYgMjAuNjkzNywwLjc4NjEgMTMuMDczNywxLjAwNTEgWiIvPgogICAgPHBhdGggZmlsbD0iI0E2MjYyNiIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNMTMuNDcwNiw0Ny44MTIgQzEyLjU1NTYsNDcuODEyIDExLjgxNDYsNDcuMDcxIDExLjgxNDYsNDYuMTU2IEMxMS44MTQ2LDQ1LjI0MSAxMi41NTU2LDQ0LjUgMTMuNDcwNiw0NC41IEMxNC4zODU2LDQ0LjUgMTUuMTI2Niw0NS4yNDEgMTUuMTI2Niw0Ni4xNTYgQzE1LjEyNjYsNDcuMDcxIDE0LjM4NTYsNDcuODEyIDEzLjQ3MDYsNDcuODEyIFoiLz4KICAgIDx1c2UgZmlsbD0iIzAwMCIgZmlsdGVyPSJ1cmwoI3Bpbi1iKSIgeGxpbms6aHJlZj0iI3Bpbi1jIi8+CiAgICA8dXNlIGZpbGw9IiNGRkYiIHhsaW5rOmhyZWY9IiNwaW4tYyIvPgogIDwvZz4KPC9zdmc+Cg==",
+    iconSize: [30, 30],
+  });
+
+  let secondIcon = L.icon({
+    iconUrl:
+      "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjUiIGN5PSIyNSIgcj0iMjUiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNSA0OUMxMS44IDQ5IDEgMzguMiAxIDI1QzEgMTEuOCAxMS44IDEgMjUgMUMzOC4yIDEgNDkgMTEuOCA0OSAyNUM0OSAzOC4yIDM4LjIgNDkgMjUgNDlaTTI1IDUuOEMxNC40NCA1LjggNS44IDE0LjQ0IDUuOCAyNUM1LjggMzUuNTYgMTQuNDQgNDQuMiAyNSA0NC4yQzM1LjU2IDQ0LjIgNDQuMiAzNS41NiA0NC4yIDI1QzQ0LjIgMTQuNDQgMzUuNTYgNS44IDI1IDUuOFoiIGZpbGw9IiNBNjI2MjYiLz4KPHBhdGggZD0iTTI1IDM3QzE4LjQgMzcgMTMgMzEuNiAxMyAyNUMxMyAxOC40IDE4LjQgMTMgMjUgMTNDMzEuNiAxMyAzNyAxOC40IDM3IDI1QzM3IDMxLjYgMzEuNiAzNyAyNSAzN1oiIGZpbGw9IiNBNjI2MjYiLz4KPC9zdmc+Cg==",
+    iconSize: [30, 30],
+  });
+
+  markerIcon = firstIcon;
+
+  let marker = L.marker([35.715298, 51.404343], { icon: firstIcon }).addTo(map);
+
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+  map.on("move", () => {
+    const center = map.getSize().divideBy(2);
+    const target = map.containerPointToLayerPoint(center);
+    const latlng = map.layerPointToLatLng(target);
+
+    marker.setLatLng(latlng);
+
+    mapView = {
+      x: latlng.lat,
+      y: latlng.lng,
+    };
+
+    console.log(mapView);
+  });
+
+  changeIcon.addEventListener("change", () => {
+    if (iconStatus === "FIRST_ICON") {
+      markerIcon = secondIcon;
+      marker.setIcon(markerIcon);
+      iconStatus = "SECOND_ICON";
+    } else {
+      markerIcon = firstIcon;
+      marker.setIcon(markerIcon);
+      iconStatus = "FIRST_ICON";
+    }
+  });
+
+  // send info to server
+  sendPostBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    // validation dynamic fields
+    let allFieldsFilled = true;
+
+    for (const key in productsFields) {
+      if (productsFields[key] === null) {
+        allFieldsFilled = false;
+      }
+    }
+
+    if (
+      !allFieldsFilled ||
+      !priceInput.value.trim() ||
+      !titleInput.value.trim() ||
+      !descInput.value.trim() ||
+      citySelectBox.value === "default" ||
+      neighborhoodSelectBox.value === "default"
+    ) {
+      return showSwal(
+        "لطفا همه اطلاعات را وارد کنید",
+        "error",
+        "متوجه شدم",
+        () => {}
+      );
+    }
+
+    const formData = new FormData();
+
+    formData.append("city", citySelectBox.value);
+    formData.append("neighborhood", neighborhoodSelectBox.value);
+    formData.append("description", descInput.value.trim());
+    formData.append("price", priceInput.value.trim());
+    formData.append("exchange", exchange.checked);
+    formData.append("map", JSON.stringify(mapView));
+    formData.append("title", titleInput.value.trim());
+    formData.append("categoryFields", JSON.stringify(productsFields));
+    pics.forEach((pic) => {
+      formData.append("pics", pic);
+    });
+
+    const res = await fetch(`${baseUrl}/v1/post/${categoryID}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+      body: formData,
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    console.log(res);
+    if (res.status === 201) {
+      showSwal(
+        "آگهی مورد نظر با موفقیت در صف انتشار قرار گرفت",
+        "success",
+        "اوکی",
+        () => {
+          location.href = `/pages/userPanel/posts/preview.html`;
+        }
+      );
+    }
   });
 });

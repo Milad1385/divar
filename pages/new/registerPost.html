@@ -115,6 +115,13 @@
       <div>
         <p class="title">موقعیت مکانی آگهی</p>
         <div id="map"></div>
+        <div class="map-controll">
+          <p>موقعیت دقیق نمایش داده نشود</p>
+          <label class="switch">
+            <input class="icon-controll" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
       </div>
       <div class="uploader">
         <p class="title">عکس آگهی</p>
@@ -195,7 +202,11 @@
           <span
             >در عنوان آگهی به موارد مهمی مانند نوع ملک و متراژ اشاره کنید.
           </span>
-          <input type="text" value="فروش مغازه" />
+          <input type="text" value="فروش مغازه" id="title" />
+        </div>
+        <div class="group">
+          <p class="title">قیمت</p>
+          <input type="text" placeholder="قیمت را به تومان وارد کنید" id="price" />
         </div>
 
         <div class="group">
@@ -204,12 +215,16 @@
             >در توضیحات آگهی به مواردی مانند شرایط فروش، جزئیات و ویژگی‌های قابل
             توجه، دسترسی‌های محلی و موقعیت قرارگیری ملک اشاره کنید.</span
           >
-          <textarea id cols="30" rows="8" placeholder="فروش مغازه"> </textarea>
+          <textarea id="desc" cols="30" rows="8" placeholder="فروش مغازه"> </textarea>
         </div>
+      </div>
+      <div class="form-check mt-5">
+        <label class="form-check-label" for="exchange"> قابل معاوضه </label>
+        <input class="form-check-input fs-3" type="checkbox" id="exchange" />
       </div>
       <div class="post_controll">
         <button>انصراف</button>
-        <button>ارسال آگهی</button>
+        <button id="send-post">ارسال آگهی</button>
       </div>
     </main>
     <!--!==========================================End Main==========================================!-->

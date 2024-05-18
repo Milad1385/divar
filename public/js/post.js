@@ -29,6 +29,7 @@ window.addEventListener("load", async () => {
   let bookmarkStatus = false;
 
   getPostDetails().then((post) => {
+    console.log(post);
     const date = calculateRelativeTimeDeffrence(post.createdAt);
     loadingElem.style.display = "none";
     description.innerHTML = post.description;
