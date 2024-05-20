@@ -90,3 +90,7 @@
  .controll-btn:hover {
     background-color: rgba(166,38,38,.04);
 }
+
+.rejected{
+    color: red !important;
+}

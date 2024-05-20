@@ -1,5 +1,11 @@
 import { baseUrl, getAllLocations } from "../../../utils/shared.js";
-import { getToken, getUrlParam, showSwal } from "../../../utils/utils.js";
+import {
+  getMe,
+  getToken,
+  getUrlParam,
+  isLogin,
+  showSwal,
+} from "../../../utils/utils.js";
 
 window.addEventListener("load", async () => {
   const loading = document.querySelector("#loading-container");
@@ -16,6 +22,11 @@ window.addEventListener("load", async () => {
   const titleInput = document.querySelector("#title");
   const descInput = document.querySelector("#desc");
 
+  const isUserLogin = await isLogin();
+  if (!isUserLogin) {
+    location.href = "/pages/posts.html";
+  }
+
   const categoryID = getUrlParam("id");
   const res = await fetch(`${baseUrl}/v1/category/sub/${categoryID}`);
 
@@ -23,7 +34,6 @@ window.addEventListener("load", async () => {
     data: { category },
   } = await res.json();
 
-  console.log(category);
   const productsFields = {};
   let pics = [];
   categoryTitle.innerHTML = category.title;
@@ -72,9 +82,7 @@ window.addEventListener("load", async () => {
   });
 
   window.handleFieldChange = (slug, value) => {
-    // console.log(slug, value);
     productsFields[slug] = value;
-    console.log(productsFields);
   };
 
   category.productFields.forEach((field) => {
@@ -94,7 +102,6 @@ window.addEventListener("load", async () => {
         file.type === "image/jpg"
       ) {
         pics.push(file);
-        console.log(URL.createObjectURL(file));
         generateImage(pics);
       } else {
         showSwal("فرمت تصویر معتبر نیست", "error", "متوجه شدم", () => {});
@@ -254,8 +261,6 @@ window.addEventListener("load", async () => {
       x: latlng.lat,
       y: latlng.lng,
     };
-
-    console.log(mapView);
   });
 
   changeIcon.addEventListener("change", () => {
@@ -320,10 +325,6 @@ window.addEventListener("load", async () => {
       body: formData,
     });
 
-    const data = await res.json();
-    console.log(data);
-
-    console.log(res);
     if (res.status === 201) {
       showSwal(
         "آگهی مورد نظر با موفقیت در صف انتشار قرار گرفت",
@@ -335,4 +336,7 @@ window.addEventListener("load", async () => {
       );
     }
   });
+
+  const user = await getMe();
+  console.log(user);
 });

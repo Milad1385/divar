@@ -1,8 +1,10 @@
 import { baseUrl, getPostDetails } from "../../utils/shared.js";
 import {
   calculateRelativeTimeDeffrence,
+  getLocalstorage,
   getToken,
   isLogin,
+  setToLocalstorage,
   showModal,
 } from "../../utils/utils.js";
 
@@ -29,7 +31,11 @@ window.addEventListener("load", async () => {
   let bookmarkStatus = false;
 
   getPostDetails().then((post) => {
-    console.log(post);
+    const recentSeens = getLocalstorage("recent-seens") || [];
+    const isRecentSeens = recentSeens?.some((postID) => postID === post._id);
+    if (!isRecentSeens) {
+      setToLocalstorage("recent-seens", [...recentSeens, post._id]);
+    }
     const date = calculateRelativeTimeDeffrence(post.createdAt);
     loadingElem.style.display = "none";
     description.innerHTML = post.description;
@@ -77,7 +83,13 @@ window.addEventListener("load", async () => {
         `
         <li class="post__info-item">
           <span class="post__info-value">${field.name}</span>
-          <span class="post__info-value">${field.data}</span>
+          <span class="post__info-value">${
+            typeof field.data === "boolean"
+              ? field.data
+                ? "دارد"
+                : "ندارد"
+              : field.data
+          }</span>
         </li>
       `
       );

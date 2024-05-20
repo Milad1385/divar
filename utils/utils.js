@@ -115,6 +115,28 @@ const getMe = async () => {
 
   return response.data.user;
 };
+
+const paginatedItems = (
+  href,
+  paginationContainer,
+  currentPage,
+  perPage,
+  totalItems
+) => {
+  paginationContainer.innerHTML = "";
+  let paginatedNumber = Math.ceil(totalItems / perPage);
+  for (let i = 1; i < paginatedNumber + 1; i++) {
+    paginationContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <li class="${i === Number(currentPage) ? "active" : ""} pagination-item">
+        <a href="${href}?page=${i}">${i.toLocaleString("fa")}</a>
+      </li>
+    `
+    );
+  }
+};
+
 export {
   setToLocalstorage,
   getLocalstorage,
@@ -128,5 +150,6 @@ export {
   isLogin,
   showSwal,
   getToken,
-  getMe
+  getMe,
+  paginatedItems,
 };

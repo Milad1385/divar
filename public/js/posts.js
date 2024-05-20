@@ -15,9 +15,13 @@ window.addEventListener("load", () => {
   const exchangeController = document.querySelector("#exchange_controll");
   const minPriceSelectbox = document.querySelector("#min-price-selectbox");
   const maxPriceSelectbox = document.querySelector("#max-price-selectbox");
+  const postsSection = document.querySelector("#posts-section");
   const cities = getLocalstorage("cities");
   const categoryId = getUrlParam("category");
   const cityIds = cities.map((city) => city.id).join("|");
+  const infiniteLoader = document.querySelector(".infinite-loader");
+  console.log(infiniteLoader);
+  let page = 1;
 
   if (cities.length === 1) {
     document.title = `دیوار ${cities[0].name}: مرجع انواع نیازمندی و آگهی‌های نو و دست دو در شهر ${cities[0].name}`;
@@ -28,11 +32,25 @@ window.addEventListener("load", () => {
   let posts = null;
   let filtersPosts = {}; // {key : value}
 
-  getAllPosts(cityIds || "301").then((res) => {
+  getAllPosts(cityIds || "301", page).then((res) => {
     loadingElem.style.display = "none";
     posts = res.data.posts;
-    console.log(posts);
     generatePosts(posts);
+    window.addEventListener("scroll", async () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >
+        document.documentElement.scrollHeight
+      ) {
+        if (page < res.data.pagination.totalPages) {
+          page++;
+          infiniteLoader.classList.add("active");
+          const result = await getAllPosts(cityIds || "301", page);
+          posts = [...posts, ...result.data.posts];
+          generatePosts(posts);
+          infiniteLoader.classList.remove("active");
+        }
+      }
+    });
   });
 
   getAllCategories().then((categories) => {
@@ -358,7 +376,7 @@ window.addEventListener("load", () => {
   justPhotoController?.addEventListener("change", (e) => {
     applyFilter();
   });
-  
+
   exchangeController?.addEventListener("change", (e) => {
     applyFilter();
   });

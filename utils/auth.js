@@ -143,4 +143,20 @@ const requestNewOtpCode = async () => {
   }
 };
 
-export { submittingHandler, verifyOtp, requestNewOtpCode };
+const logout = () => {
+  showSwal(
+    "آیا از خروج اطمینان دارید ؟",
+    "warning",
+    ["خیر", "بله"],
+    (result) => {
+      if (result) {
+        localStorage.removeItem("token");
+        showSwal("با موفقیت خروج شدید", "success", "صفحه اصلی", () => {
+          location.href = "/pages/posts.html";
+        });
+      }
+    }
+  );
+};
+
+export { submittingHandler, verifyOtp, requestNewOtpCode, logout };

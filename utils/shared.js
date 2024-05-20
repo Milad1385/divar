@@ -1,4 +1,5 @@
-import { getMe, getToken, getUrlParam, isLogin } from "./utils.js";
+import { logout } from "./auth.js";
+import { getMe, getToken, getUrlParam, hideModal, isLogin, showModal } from "./utils.js";
 
 const baseUrl = "https://divarapi.liara.run";
 
@@ -32,10 +33,10 @@ const getAndShowSocialIcons = async () => {
   }
 };
 
-const getAllPosts = async (city) => {
+const getAllPosts = async (city , page) => {
   const categoryId = getUrlParam("category");
   const searchValue = getUrlParam("q");
-  let url = `${baseUrl}/v1/post/?city=${city}`;
+  let url = `${baseUrl}/v1/post/?city=${city}&page=${page}`;
 
   if (categoryId) {
     url += `&categoryId=${categoryId}`;
@@ -46,6 +47,8 @@ const getAllPosts = async (city) => {
   }
   const res = await fetch(`${url}`);
   const posts = await res.json();
+
+  console.log(posts);
 
   return posts;
 };
@@ -127,7 +130,7 @@ const showPanelLinks = async () => {
                   یادداشت ها
                 </a>
               </li>
-              <li class="header__left-dropdown-item logout-link" id="login_btn">
+              <li class="header__left-dropdown-item logout-link" id="logout_btn" onclick="logoutHandler()">
                 <p class="header__left-dropdown-link" href="#">
                   <i class="header__left-dropdown-icon bi bi-shop"></i>
                   خروج
@@ -140,7 +143,7 @@ const showPanelLinks = async () => {
       dropDown.insertAdjacentHTML(
         "beforeend",
         `
-          <li class="header__left-dropdown-item">
+          <li class="header__left-dropdown-item" onclick="showLoginForm()">
             <span id="login-btn" class="header__left-dropdown-link login_dropdown_link">
               <i class="header__left-dropdown-icon bi bi-box-arrow-in-left"></i>
               ورود
@@ -204,6 +207,15 @@ const getSearchResults = async (key) => {
   console.log(result);
 
   return result.data.articles;
+};
+
+window.logoutHandler = () => {
+  logout();
+};
+
+window.showLoginForm = () => {
+  hideModal("header__category-menu", "header__category-menu--active");
+  showModal("login-modal", "login-modal--active");
 };
 
 export {

@@ -1087,6 +1087,15 @@ button {
   width: 100%;
   height: 100vh;
 }
+
+.infinite-loader {
+  display: none;
+}
+
+.infinite-loader.active {
+  display: block;
+}
+
 .active-login-loader {
   display: block !important;
   background: transparent !important;
@@ -1102,4 +1111,38 @@ button {
     -webkit-transform: rotate(360deg);
   }
 }
+
+.pagination-items {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.pagination-item {
+  background-color: #f3f0f0;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+
+.pagination-item a {
+  font-size: 14px;
+  color: black;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-item.active {
+  background-color: #a62626;
+  color: white !important;
+}
+
+.pagination-item.active a {
+  color: white !important;
+}
+
 /* !=======================================Loading!======================================= */

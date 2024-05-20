@@ -1,4 +1,5 @@
 import {
+  logout,
   requestNewOtpCode,
   submittingHandler,
   verifyOtp,
@@ -291,7 +292,7 @@ window.addEventListener("load", async () => {
   const generateCities = (data) => {
     cityModalListElem ? (cityModalListElem.innerHTML = "") : null;
     cityModalCitiesContainer?.scrollTo(0, 0);
-    data.provinces.forEach((province) => {
+    data.provinces?.forEach((province) => {
       cityModalListElem?.insertAdjacentHTML(
         "beforeend",
         `
@@ -611,4 +612,6 @@ window.addEventListener("load", async () => {
       showModal("login-modal", "login-modal--active");
     }
   });
+
+
 });

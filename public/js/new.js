@@ -1,6 +1,7 @@
 import { getAllCategories } from "../../utils/shared.js";
+import { isLogin } from "../../utils/utils.js";
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   const loading = document.querySelector("#loading-container");
   const switchElem = document.querySelector(".icon-controll");
   const categoriesList = document.querySelector("#boxes-container");
@@ -15,9 +16,13 @@ window.addEventListener("load", () => {
     allCategories.classList.add("active");
   });
 
+  const isUserLogin = await isLogin();
+  if (!isUserLogin) {
+    location.href = "/pages/posts.html";
+  }
+
   getAllCategories().then((categories) => {
     loading.style.display = "none";
-    console.log(categories);
 
     const generateCategories = (categories, title, id) => {
       categoriesList.innerHTML = "";
