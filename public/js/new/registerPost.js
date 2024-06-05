@@ -167,14 +167,12 @@ window.addEventListener("load", async () => {
     );
 
     cityChoices.setChoices(
-      data.cities.map((city) => {
-        return {
-          value: city.id,
-          label: city.name,
-          customProperties: { id: city.id || 301 },
-          selected: city.name === "تهران" ? true : false,
-        };
-      }),
+      data.cities.map((city) => ({
+        value: city.id,
+        label: city.name,
+        customProperties: { id: city.id || 301 },
+        selected: city.name === "تهران" ? true : false,
+      })),
       "value",
       "label",
       false
@@ -336,7 +334,4 @@ window.addEventListener("load", async () => {
       );
     }
   });
-
-  const user = await getMe();
-  console.log(user);
 });

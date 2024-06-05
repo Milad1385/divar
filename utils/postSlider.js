@@ -15,4 +15,5 @@ const swiper = new Swiper(".mySwiper2", {
   thumbs: {
     swiper: swiper2,
   },
+
 });

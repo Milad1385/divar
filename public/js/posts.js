@@ -5,6 +5,7 @@ import {
   getLocalstorage,
   getUrlParam,
   deleteUrlParam,
+  getMe,
 } from "../../utils/utils.js";
 
 window.addEventListener("load", () => {
@@ -15,12 +16,10 @@ window.addEventListener("load", () => {
   const exchangeController = document.querySelector("#exchange_controll");
   const minPriceSelectbox = document.querySelector("#min-price-selectbox");
   const maxPriceSelectbox = document.querySelector("#max-price-selectbox");
-  const postsSection = document.querySelector("#posts-section");
   const cities = getLocalstorage("cities");
   const categoryId = getUrlParam("category");
   const cityIds = cities.map((city) => city.id).join("|");
   const infiniteLoader = document.querySelector(".infinite-loader");
-  console.log(infiniteLoader);
   let page = 1;
 
   if (cities.length === 1) {
@@ -31,6 +30,7 @@ window.addEventListener("load", () => {
 
   let posts = null;
   let filtersPosts = {}; // {key : value}
+
 
   getAllPosts(cityIds || "301", page).then((res) => {
     loadingElem.style.display = "none";
